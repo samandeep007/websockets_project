@@ -28,10 +28,10 @@ function App() {
 
 
   return (
-    <>
-
-    </>
-  )
+      (
+        latestMessage ? <h1> Latest message: {latestMessage} </h1> : null
+      )
+    )
 }
 
 export default App
