@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 
 function App() {
-  const[socket, setSocket] = useState<WebSocket | null>(null) 
-  
+  const [socket, setSocket] = useState<WebSocket | null>(null)
+
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8080')  //WebSocket comes from the browser
-   
+
     ws.onopen = () => {
       console.log('Connected to server');
       setSocket(ws)
@@ -16,18 +16,18 @@ function App() {
     }
 
   }, [])
- 
 
-  if(!socket){
+
+  if (!socket) {
     return <>
-    <h1>Connecting to the WebSocket server</h1>
+      <h1>Connecting to the WebSocket server</h1>
     </>
   }
 
 
   return (
     <>
-    
+
     </>
   )
 }
