@@ -16,17 +16,17 @@ const server = http.createServer((req, res) => {
 
 const wss = new WebSocketServer({server}); // create WebSocket server
 
-wss.on('connection', (ws) => { // when a client connects --> .on is an event listener
-    ws.on('error', console.error); // if there is an error
-    ws.on('message', function message(data, isBinary){ // when a message is received 
-       wss.clients.forEach(function each(client) { // send the message to all clients
+wss.on('connection', (ws) => { // when a client connects --> .on is an event listener 
+    ws.on('error', (err) => console.error(err)); // if there is an error
+    ws.on('message', (data) => { // when a message is received 
+       wss.clients.forEach((client) => { // send the message to all clients
         if(client.readyState === WebSocket.OPEN) { // if the client is connected
-            client.send(data, {binary: isBinary}); // send the message
+            client.send(data); // send the message
         }
        });
     });
 
-    ws.send('Hello! Message from the server!!'); // send a message to the client    
+    ws.send('Hello! Message from the server!!'); // send a message to the client as soon as it connects  
 })
 
 
