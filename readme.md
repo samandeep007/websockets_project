@@ -208,3 +208,35 @@ Here is the link to the `ws` library documentation on GitHub: [ws GitHub Documen
 Make sure to explore the documentation to gain a deeper understanding of the library and its features. It will provide you with valuable insights and guidance for implementing WebSockets effectively in your Express application.
 
 
+## Code to review (Pending)
+```Javascript
+
+import express from 'express'
+import WebSocket, { WebSocketServer } from 'ws'; // import WebSocket module
+
+
+const app = express(); // create express app
+
+const server = app.listen(8080, () => {
+    console.log('Server is running on http://localhost:8080')
+}); // create http server
+
+const wss = new WebSocketServer({ server });
+
+const userCount = wss.clients.size;
+
+wss.on('connection', (ws) => {
+    wss.on('error', (err) => console.error(err));
+    wss.on('message', (data, isBinary) => {
+        wss.clients.forEach((client) => {
+            if(client.readyState === WebSocket.OPEN){
+                client.send(data, {binary: isBinary})
+            }
+        })
+    })
+
+    console.log("Client connected ", userCount);
+    ws.send('Hello! Message from the server!!');
+})
+
+```
