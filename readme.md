@@ -229,6 +229,7 @@ wss.on('connection', (ws) => {
             if(client.readyState === WebSocket.OPEN){
                 client.send(data, {binary: isBinary})
             }
+        // console.log("Response: ", data);
         })
     })
 

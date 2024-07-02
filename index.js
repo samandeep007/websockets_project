@@ -46,6 +46,7 @@ wss.on('connection', (ws) => {
                 client.send(data, { binary: isBinary }); // send the message
             }
         });
+        // console.log("Response: ", data);
     });
     console.log('Client connected ', userCount); // log the number of users connected
     ws.send('Hello! Message from the server!!'); // send a message to the client as soon as it connects  
