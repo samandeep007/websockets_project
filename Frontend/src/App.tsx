@@ -18,6 +18,10 @@ function App() {
       setLatestMessage(message.data)
     }
 
+    return () => { //This is the cleanup function that runs when the component is unmounted or the WebSocket is closed --> unmounted means the component is removed from the DOM
+      ws.close()
+    }
+
   }, [])
 
 
