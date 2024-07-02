@@ -212,20 +212,17 @@ Make sure to explore the documentation to gain a deeper understanding of the lib
 ```Javascript
 
 import express from 'express'
-import WebSocket, { WebSocketServer } from 'ws'; // import WebSocket module
+import {WebSocket, WebSocketServer } from 'ws'; // import WebSocket module
 
 
 const app = express(); // create express app
 
-const server = app.listen(8080, () => {
-    console.log('Server is running on http://localhost:8080')
-}); // create http server
+const httpServer = app.listen(8080); // create http server
 
-const wss = new WebSocketServer({ server });
-
-const userCount = wss.clients.size;
+const wss = new WebSocketServer({ server: httpServer });
 
 wss.on('connection', (ws) => {
+    const userCount = wss.clients.size;
     wss.on('error', (err) => console.error(err));
     wss.on('message', (data, isBinary) => {
         wss.clients.forEach((client) => {
