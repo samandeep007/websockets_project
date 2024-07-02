@@ -8,12 +8,12 @@ function App() {
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8080')  //WebSocket comes from the browser
 
-    ws.onopen = () => {
+    ws.onopen = () => { //This function runs when the WebSocket connection is opened
       console.log('Connected to server');
       setSocket(ws)
     }
 
-    ws.onmessage = (message) => {
+    ws.onmessage = (message) => { //This function runs when the WebSocket receives a message
       console.log('Received:', message.data);
       setLatestMessage(message.data)
     }
