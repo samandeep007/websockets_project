@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 
 function App() {
-  const [socket, setSocket] = useState<WebSocket | null>(null)
+  const [socket, setSocket] = useState<WebSocket | null>(null) //Can either be a WebSocket or null
+  const [latestMessage, setLatestMessage] = useState<string>("");
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8080')  //WebSocket comes from the browser
@@ -13,6 +14,7 @@ function App() {
 
     ws.onmessage = (message) => {
       console.log('Received:', message.data);
+      setLatestMessage(message.data)
     }
 
   }, [])
