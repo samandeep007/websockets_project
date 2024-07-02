@@ -38,15 +38,17 @@ const server = http_1.default.createServer((req, res) => {
 }); // create http server
 const wss = new ws_1.WebSocketServer({ server }); // create WebSocket server
 wss.on('connection', (ws) => {
-    ws.on('error', console.error); // if there is an error
-    ws.on('message', function message(data, isBinary) {
-        wss.clients.forEach(function each(client) {
+    let userCount = wss.clients.size; // get the number of users connected
+    ws.on('error', (err) => console.error(err)); // if there is an error
+    ws.on('message', (data, isBinary) => {
+        wss.clients.forEach((client) => {
             if (client.readyState === ws_1.default.OPEN) { // if the client is connected
                 client.send(data, { binary: isBinary }); // send the message
             }
         });
     });
-    ws.send('Hello! Message from the server!!'); // send a message to the client    
+    console.log('Client connected ', userCount); // log the number of users connected
+    ws.send('Hello! Message from the server!!'); // send a message to the client as soon as it connects  
 });
 server.listen(8080, () => {
     console.log('Server is running on http://localhost:8080');

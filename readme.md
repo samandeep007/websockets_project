@@ -181,6 +181,23 @@ One real-life use case of using `forEach` with `client` in a WebSocket server is
 For example, let's say you have a chat application where users can join different chat rooms. When a user sends a message in a specific chat room, you want to broadcast that message only to the clients connected to that particular chat room.
 
 
+## Using Hoppscotch.io to Test WebSockets
+
+To implement the use of Hoppscotch.io to test WebSockets, you can follow these steps:
+
+1. Open [Hoppscotch.io](https://hoppscotch.io) in your web browser.
+2. Create a new request by clicking on the "New Request" button.
+3. Set the request method to "WebSocket".
+4. Enter the WebSocket URL in the request URL field. For example, if your WebSocket server is running on `ws://localhost:3000`, enter `ws://localhost:3000` as the URL.
+5. Customize the request headers and payload if necessary.
+6. Click on the "Send" button to establish the WebSocket connection and send the request.
+7. Hoppscotch.io will display the response and any subsequent messages received from the WebSocket server.
+
+You can use Hoppscotch.io to test your WebSocket server by sending messages and observing the responses. It provides a convenient interface for interacting with WebSocket endpoints and can be a valuable tool during development and testing.
+
+Remember to customize the WebSocket URL and any other request parameters according to your specific WebSocket server configuration.
+
+
 
 ## Additional Resources
 
@@ -189,4 +206,5 @@ If you want to learn more about implementing WebSockets in an Express applicatio
 Here is the link to the `ws` library documentation on GitHub: [ws GitHub Documentation](https://github.com/websockets/ws)
 
 Make sure to explore the documentation to gain a deeper understanding of the library and its features. It will provide you with valuable insights and guidance for implementing WebSockets effectively in your Express application.
+
 
