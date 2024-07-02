@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 function App() {
   const [socket, setSocket] = useState<WebSocket | null>(null) //Can either be a WebSocket or null
   const [latestMessage, setLatestMessage] = useState<string>("");
+  const[message, setMessage] = useState<string>("");
 
   useEffect(() => {
     const ws = new WebSocket('ws://localhost:8080')  //WebSocket comes from the browser
@@ -28,9 +29,14 @@ function App() {
 
 
   return (
-      (
-        latestMessage ? <h1> Latest message: {latestMessage} </h1> : null
-      )
+      <>
+        {latestMessage ? <h1> Latest message: {latestMessage} </h1> : null}
+
+        <input type="text" onChange={(e) => setMessage(e.target.value)}/>
+        <button onClick={() => socket.send(message)}>Send Message</button>
+        </>
+
+      
     )
 }
 
